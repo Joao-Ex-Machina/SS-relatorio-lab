@@ -23,11 +23,21 @@
 
 \begin{document}
 	\pagenumbering{gobble}
-	\begin{titlepage}
-		\maketitle
-	\end{titlepage}
+	\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+        \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
+        \center % Centre everything on the page
+        \textsc{\LARGE Instituto Superior Técnico}\\[1.5cm] % Main heading such as the name of your university/college
+        \textsc{\Large Sinais e Sistemas}\\[0.5cm] % Major heading such as course name
+        \HRule\\[0.4cm]
+        {\huge\bfseries Relatório Laboratorial}\\[0.4cm] % Title of your document
+        \HRule\\[1.5cm]\
+        João \textsc{Barreiros C. Rodrigues} nº99968 , LEEC\\
+	Vasco \textsc{Maria  Aguiar M. R. Esteves} nº 100110, LEEC
+        \vfill\vfill\vfill % Position the date 3/4 down the remaining page
+        {\large Janeiro-Fevereiro 2022} % Date, change the \today to a set date if you want to be precise
+        \vfill % Push the date up 1/4 of the remaining page
+\end{titlepage}
 	\pagenumbering{arabic}
-	\section{Introdução}
 	\newpage
 	\section{Análise de um sistema (R1-R5)}
 		\subsection{Questão R1}
@@ -46,7 +56,7 @@
   				\centering
   				\captionsetup{justification=centering}
   				\includegraphics[scale=0.35\textscale]  {r1graph01.png}
-				\caption{A azul e a verde, respectivamente as representações gráficas de y1 e y2, de notar que y1 \neq y2}
+				\caption{A azul e a laranja, respectivamente as representações gráficas de y1 e y2, de notar que y1 \neq y2}
 			\end{figure}
 			Verificando assim que o sistema não é aditivo, precipitando para a conclusão da  \textbf{não-linearidade do sistema.}\\
 			Embora a linearidade seja uma conjunção de duas propriedades, realiza-se também o teste da condição de homogeneidade para efeitos de estudo:
@@ -73,11 +83,11 @@
 			O sistema será invariante no tempo se a seguinte proposição for verdadeira:
 			\mbox{}\\
 			\mbox{} \\
-			\mbox{		} \textit{Para x$_0$(t) e x$_1$(t)=x$_0$(t+\textbeta) ou seja x$_1$(t)= \mathbb{T}$_\textbeta$ x$_0$(t)
+			\mbox{		} \textit{Para x$_0$(t) e x$_1$(t)=x$_0$(t+\textbeta) ou seja x$_1$(t)= \mathbb{T}$_\beta$ x$_0$(t)
 			\\ 
-			\mbox{          } \mathbb{T}$_\textbeta$ sistema(x$_0$)=sistema(x$_1$)}
+			\mbox{          } \mathbb{T}$_\beta$ sistema(x$_0$)=sistema(x$_1$)}
 			\mbox{}\\
-			\mbox{          } Considerando \mathbb{T}$_\textbeta$ o operador deslocamento para o vector (0,-\textbeta)
+			\mbox{          } Considerando \mathbb{T}$_\beta$ o operador deslocamento para o vector (0,-\textbeta)
 \mbox{}\\\mbox{}\\
 			Tomando as noções anteriores computa-se no ambiente \textit{ipython}:
 			\begin{figure}[H]
@@ -95,50 +105,148 @@
       			\end{figure}
 			Concluindo-se que o sistema 2 \textbf{não é invariante no tempo}
 	\newpage	
-	\subsection{Questão R3}
-		\paragraph{Sucintamente, um sistema descreve-se como sem memória se o seu output para um instante t$_1$ for dependente apenas do input dado nesse mesmo instante.}
-		\mbox{}\\
-		\mbox{}\\
-		Desta forma é possível aferir que um sistema sem memória tem todas as suas referências canônicas à variável tempo na forma:
-		\\ 
-		\begin{center}
-			\textalpha $t^{\gamma}$ +\textbeta , com \textalpha = 1, \textgamma=1 e \textbeta=0.
-		\end{center}
-		\\
-		Um teste simples que pode ser utilizado para verificar esta propriedade consiste na síntese de dois sinais x$_0$ e x$_1$ distintos que se intersetam em determinado instante t$_i$. Para um sistema de equação y$_1$ o sistema será sem memória se y$_1$(x$_0$) e y$_1$(x$_1$) se intersetarem em t$_i$.
-		\mbox{}\\
-		\mbox{}\\
-		Executando o referido teste:
-		\begin{figure}[H]
-      			\centering
-      			\captionsetup{justification=centering}
-      			\includegraphics[width=0.2\textwidth]{r3code01.png}
-			\caption{Realização em ambiente \textit{ipython} do teste acima descrito}
-      		\end{figure}
-		Do qual se obtém o primeiro \textit{output}, de controlo:
-		\begin{figure}[H]
-        		\centering
-        		\captionsetup{justification=centering}
-        		\includegraphics[scale=0.35\textscale]{r3graph01.png}
-			\caption{Representação gráfica de x1 (a azul) e x0 (a laranja). De notar a intersecção dos gráficos para t=0 e t=2}
-        	\end{figure}
-		E o segundo, conclusivo:
-		\begin{figure}[H]
-       	 		\centering
-        		\captionsetup{justification=centering}
-        		\includegraphics[scale=0.35\textscale]{r3graph02.png}
-			\caption{Representação gráfica de y0 (a azul) e y1 (a laranja). Verifique-se a não intersecção do gráficos em t=0 e t=2}
-		\end{figure}
-		Prova-se que o sistema 2 \textbf{é com memória}
-	\subsection{Questão R4}
-		\paragraph{Assim como na caracterização da memória do sistema, também a definição de causalidade assenta nas particularidades do sistema relativas à variável tempo. Desta forma um sistema descreve-se como causal quando o  seu output para qualquer instante t$_1$ for dependente apenas de inputs presentes ou passados ou seja t$_1$ \ge t _{input}}\mbox{  }\\ \mbox{}\\
-		Desta forma é possível aferir que um sistema causal tem todas as suas referências canônicas à variável tempo na forma:\\
-		\begin{center} 
-			\begin{math}
-				\textalpha t^{\gamma}$ +\textbeta , com \textalpha \in ]0,1[, \gamma \in ]0,  1] \mbox{  }e \mbox{  }\beta  \in ]- \infty , 0]. 
-			\end{math}
-		\end{center}
-		\\
-
-	\subsection{Questão R5}
+		\subsection{Questão R3}
+			\paragraph{Sucintamente, um sistema descreve-se como sem memória se o seu output para um instante t$_1$ for dependente apenas do input dado nesse mesmo instante.}
+			\mbox{}\\
+			\mbox{}\\
+			Desta forma é possível aferir que um sistema sem memória tem todas as suas referências canônicas à variável tempo na forma:
+			\\ 
+			\begin{center}
+				\textalpha $t^{\gamma}$ +\textbeta , com \textalpha = 1, \textgamma=1 e \textbeta=0.
+			\end{center}
+			Um teste simples que pode ser utilizado para verificar esta propriedade consiste na síntese de dois sinais x$_0$ e x$_1$ distintos que se intersetam em determinado instante t$_i$. Para um sistema de equação y$_1$ o sistema será sem memória se y$_1$(x$_0$) e y$_1$(x$_1$) se intersetarem em t$_i$.
+			\mbox{}\\
+			\mbox{}\\
+			Executando o referido teste:
+			\begin{figure}[H]
+      				\centering
+      				\captionsetup{justification=centering}
+      				\includegraphics[width=0.2\textwidth]{r3code01.png}
+				\caption{Realização em ambiente \textit{ipython} do teste acima descrito}
+      			\end{figure}
+			Do qual se obtém o primeiro \textit{output}, de controlo:
+			\begin{figure}[H]
+        			\centering
+        			\captionsetup{justification=centering}
+        			\includegraphics[scale=0.35\textscale]{r3graph01.png}
+				\caption{Representação gráfica de x1 (a azul) e x0 (a laranja). De notar a intersecção dos gráficos para t=0 e t=2}
+        		\end{figure}
+			E o segundo, conclusivo:
+			\begin{figure}[H]
+       	 			\centering
+        			\captionsetup{justification=centering}
+        			\includegraphics[scale=0.35\textscale]{r3graph02.png}
+				\caption{Representação gráfica de y0 (a azul) e y1 (a laranja). Verifique-se a não intersecção do gráficos em t=0 e t=2}
+			\end{figure}
+			Prova-se que o sistema 2 \textbf{é com memória}
+		\subsection{Questão R4}
+			\paragraph{Assim como na caracterização da memória do sistema, também a definição de causalidade assenta nas particularidades do sistema relativas à variável tempo. Desta forma um sistema descreve-se como causal quando o  seu output para qualquer instante t$_1$ for dependente apenas de inputs presentes ou passados ou seja t$_1$ \ge t _{input}}\mbox{  }\\ \mbox{}\\
+			Desta forma é possível aferir que um sistema causal tem todas as suas referências canônicas à variável tempo na forma:\\
+			\begin{center} 
+				\begin{math}
+					\alpha t^{\gamma}$ +\beta , com \alpha \in ]0,1[, \gamma \in ]0,  1] \mbox{  }e \mbox{  }\beta  \in ]- \infty , 0]. 
+				\end{math}
+			\end{center}
+			Desta forma, para determinar um possível contra-exemplo utilizam-se sinais de tipo \textit{degrau} (nos testes apresentados utilizam-se degrau unitário, linear, sinusoidal e exponencial) tal que para t < 0 x$_n$ é igual a 0. Assim caso o sinal de saída $sistema(x$_t$(t)) \neq 0$ para t < 0 compreende-se o adiantamento do sinal ou seja o output está a depender de inputs futuros, ou seja viola-se a definição inicialmente estipulada para a causalidade.
+			\newpage
+			Assim computa-se o setup inicial:
+			\begin{figure}[H]
+                        	\centering
+                        	\captionsetup{justification=centering}
+                        	\includegraphics[width=0.3\textwidth]{r4code01.png}
+	        		\caption{Síntese dos sinais acima propostos, com degrau linear x0, degrau exponencial x1, degrau sinusoidal x2 e degrau unitário x3}
+                	\end{figure}
+			Para o qual se obtém o output:
+			\begin{figure}[H]
+                        	\centering
+                        	\captionsetup{justification=centering}
+                        	\includegraphics[scale=0.35\textscale]{r4graph01.png}
+                		\caption{Representação gráfica dos sinais de input sintetizados. A azul, laranja, verde e vermelho respectivamente x0, x1, x2 e x3}
+                	\end{figure}
+			\newpage
+			De seguida computa-se o setup secundário:
+			\begin{figure}[H]
+	        		\centering
+        	        	\captionsetup{justification=centering}
+                		\includegraphics[width=0.3\textwidth]{r4code02.png}
+                        	\caption{Síntese dos sinais de output y$_n$}
+                	\end{figure}
+			Para o qual se obtém o output:
+			\begin{figure}[H]
+                        	\centering
+                          	\captionsetup{justification=centering}
+                          	\includegraphics[scale=0.4\textscale]{r4graph02.1.png}
+                          	\caption{Representação gráfica dos sinais de output, com sinal coincidente ao input respectivo. Adicionalmente não se considera a oscilação do sinal circundada a roxo, proveniente das limitações do ambiente em que as experiências foram realizadas.}
+                  	\end{figure}
+			Verifica-se que para os sinais dados (propositalmente de equações distintas) a condição inicial que sustenta a definição de causalidade não é quebrada uma vez que nenhum dos sinais y$_n$ possui para t<0 valor $\neq 0$ ou seja não é presente nenhuma evidência que o sistema2 provoque o adiantamento do sinal.\\ \mbox{} \\
+		Mantém-se então a hipótese que o sistema \textbf{possa ser causal}.
+		\newpage
+		\subsection{Questão R5}
+			\paragraph{Sucintamente define-se um sistema estável como um sistema que para um input com pequenas oscilações não diverge}\mbox{}\\\mbox{}\\
+			Um válido teste para determinar um contra-exemplo para a estabilidade de um sistema é a utilização de inputs limitados superior e inferiormente (nos testes apresentados utilizam-se degrau unitário e sinal sinusoidal). Desta forma caso o sinal de output pelo sistema sintetizado divergir prova-se que o sistema não é estável.\\
+			Assim em ambiente \textit{ipython} computa-se:
+                  	\begin{figure}[H]
+                        	\centering
+                        	\captionsetup{justification=centering}
+                        	\includegraphics[width=0.3\textwidth]{r5code01.png}
+                		\caption{Síntese dos sinais x0 e x1, demonstrados em alíneas anteriores como sendo limitados. Síntese dos sinais de output y$_n$ pela passagem dos respectivos sinais x$_n$ pelo sistema 2}
+                  		\end{figure}
+                	Para o qual se obtém o output gráfico:
+                  	\begin{figure}[H]
+                        	\centering
+                        	\captionsetup{justification=centering}
+                		\includegraphics[scale=0.4\textscale]{r5graph01.png}
+                		\caption{Representação gráfica dos sinais de output. De notar que ambos os sinais de output são limitados superior e inferiormente}
+			\end{figure}
+			Desta forma não foi possível sintetizar um contra-exemplo mantendo-se a hipótese da \textbf{possível estabilidade do sistema}.
+	\section{Sistemas como modelos de circuitos. Filtragem (R6-R9)}
+		\subsection{Questão R6}
+			\paragraph{Da expressão deduzida de |H(j$\omega$)|:} \mbox{}\\ \mbox{} \\
+			\begin{center}
+				H(j$\omega$)= $\frac{1}{1+j\omega RC}$ $\iff$ \\ \mbox{}\\
+				|H(j$\omega$)|= $\frac{1}{\sqrt{(1+j\omega RC)^{2}}}$ $\iff$\\ \mbox{}\\
+				R= $\frac{\sqrt{\frac{1}{|H(j\omega)|^{2}}-1}}{\omega C}$
+			\end{center}
+			Obtém-se os valores de |H(j$\omega$)| pela computação no sistema \textit{ipython}:
+			\begin{figure}[H]
+                        	\centering
+                                \captionsetup{justification=centering}
+                        	\includegraphics[width=0.7\textwidth]{r6code01.png}
+				\caption{Determinação de |H(j$\omega$)| para vários $\omega$}
+          			\end{figure}
+			  Calculando R pela relação anteriormente estabelecida e cruzamento de dados:\\
+			\begin{center}
+			  \begin{tabular}{||l|c|r||}
+    				\cline{1-10}
+    					$\omega$ & |H(j$\omega$)| & R /$\Omega$  \\
+    				\hline \hline
+    					1 & 0.99997 &  755.12 \\
+    				\hline
+    					2 & 0.93554 & 763.66 \\
+    				\hline
+    					3 & 0.79476 & 766.81 \\
+				\hline
+                                	5 & 0.65611 &  763.96 \\
+				\hline
+                                	8 & 0.46385 & 759.61\\
+				\hline
+                                	21 & 0.31262 & 764 \\
+				\hline
+                                	34 & 0.12370 & 763.97  \\
+				\hline
+                                	40 & 0.076770 & 763.97 \\
+				\cline{11-11}
+			\end{tabular}
+		       \end{center}
+			Assim R$_m$$_e$$_d$$_i$$_o$ =762.64 $\Omega$.
+			\newpage
+		\subsection{Questão R7}
+			\paragraph{Toma-se como noção inicial que quanto mais rápida for a variação instantânea de um dado sinal x$_n$ em t$_0$ maior será a frequência instantânea nesse mesmo instante no espectro do sinal, y$_n$.} \mbox{} \\ \mbox{} \\
+			Têm-se então o sinal \textit{p} e o módulo do seu espectro y$_p$, que se utilizarão como controlo dos testes seguintes:
+			Passando \textit{p} pelo sistema 4, identificado como um filtro passa-baixo, e extraíndo o espectro do output:
+			[IMAGEM]
+			Logo assim como seria previsível as frequências mais altas são suprimidas, resultando numa pior reprodução das variações rápidas do sinal.
+			Passando \textit{p} pelo sistema 5, identificado como um filtro passa-alto, e extraíndo o espectro do output:
+                        [IMAGEM]
+                        Assim como expectável as frequências mais baixas são suprimidas, resultando numa pior reprodução das variações lentas do sinal.
 \end{document}
